@@ -1,0 +1,11 @@
+<% patients.each do |patient| %>
+  <% next if patient.not_visible #Time.zone.try(:parse, patient.date_birth) > Time.zone.try(:parse, "01.01.2001") %>
+  <Row>
+    <Cell><Data ss:Type="String"><%= patient.full_name %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= patient.gender %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= patient.date_birth %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= "#{building.full_address} кв.#{patient.appartment_number}" %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= patient.phone %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= patient.preferential_categories %></Data></Cell>
+  </Row>
+<% end %>

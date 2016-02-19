@@ -1,0 +1,5 @@
+- gender_patient = (patient.gender == 'чол.') ? 'male' : 'female'
+%span.gender{data: {id: patient.id}}
+  .fa-hover.col-md-1.col-sm-1
+    = link_to update_gender_patient_path(patient.id, gender_patient), data: {remote: true, method: :post} do
+      %i.fa{class: "fa-#{gender_patient}"}

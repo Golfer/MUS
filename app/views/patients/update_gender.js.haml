@@ -1,0 +1,1 @@
+$(".gender[data-id='#{@patient.id}']").parent().html("#{escape_javascript(render partial: 'patients/update_gender', locals: { patient: @patient } )}")

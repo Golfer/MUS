@@ -1,0 +1,6 @@
+.row
+  .col-sm-12.form-style
+    .panel.panel-default
+      .panel-heading  New Patients
+      .panel-body
+        = render partial: 'patients/form', locals: { patient: @patients }

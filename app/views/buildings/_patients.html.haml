@@ -1,0 +1,31 @@
+.col-lg-12.col-md-12
+  - unless patients.blank?
+    %table.table.table-bordered.table-patients
+      %tr
+        %th
+        %th
+        %th Стать
+        %th Повне імя
+        %th Дата народження
+        %th Квартира №
+        %th Телефон
+        %th Пільгові категорії
+        %th Повний адрес
+        - patients.each do |patient|
+          - class_people = Time.zone.try(:parse, patient.date_birth) > Time.zone.try(:parse, "01.01.2001") ? 'yang_people' : ''
+          %tr{class: class_people, data: {id: patient.id}}
+            %td
+              -#.fa-hover.col-md-1.col-sm-1
+                = link_to patient_path(patient), method: :delete, data: { remote: true } do
+                  %i.fa.fa-trash
+              .fa-hover.col-md-1.col-sm-1
+                = link_to edit_patient_path(patient) do
+                  %i.fa.fa-pencil-square-o
+            %td= render partial: 'patients/hide_patient', locals: { patient: patient }
+            %td= render partial: 'patients/update_gender', locals: { patient: patient }
+            %td= patient.full_name
+            %td= patient.date_birth
+            %td= patient.appartment_number
+            %td= patient.phone
+            %td= patient.preferential_categories
+            %td= "#{patient.building.full_address} кв. #{patient.appartment_number}"

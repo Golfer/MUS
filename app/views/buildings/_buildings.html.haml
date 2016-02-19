@@ -1,0 +1,49 @@
+-#- buildings.each do |building|
+  .col-md-6
+    .col-md-3
+      = link_to edit_building_path(building), class: 'btn btn-lg btn-default' do
+        %i.fa-hover.fa.fa-home.fa-4x.pull-left
+        -#%em= building.full_address
+    .col-md-9
+      .row
+        .col-md-12
+          test name building
+      .row
+        .col-md-6
+          import
+        .col-md-6
+          export
+%table.table.table-bordered.table-buildings
+  %tr
+    %th.mw100
+    %th.mw15
+    %th.mw15
+    %th= 'Будинок'
+    %th= 'короткий опис'
+    %th.mw15
+    %th.mw15
+    - buildings.each do |building|
+      %tr{data: {id: building.id}}
+        %td
+          .fa-hover.col-md-1.col-sm-1
+            = link_to patients_building_path(building), class: 'btn btn-default btn-sm', title: 'See all patients for current building' do
+              %i.fa.fa-users
+              %em 108/100
+        %td
+          .fa-hover.col-md-1.col-sm-1
+            = link_to import_patients_to_building_path(building), title: 'Import patient for current building' do
+              %i.fa.fa-cloud-upload
+        %td
+          .fa-hover.col-md-1.col-sm-1
+            = link_to building_export_patients_path(building, format: :xls), title: 'Export patient for current building' do
+              %i.fa.fa-cloud-download
+        %td= building.full_address
+        %td= building.description
+        %td
+          .fa-hover.col-md-2.col-sm-2
+            = link_to edit_building_path(building), class: 'btn btn-default btn-sm', title: 'Edit Bulding Information' do
+              %i.fa.fa-pencil
+        %td
+          .fa-hover.col-md-1.col-sm-1
+            = link_to building_path(building), method: :delete, class: 'btn btn-danger btn-sm', data: { remote: true } do
+              %i.fa.fa-trash

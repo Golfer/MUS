@@ -1,0 +1,21 @@
+.row
+  .col-sm-12.col-lg-12
+    .panel.panel-default
+      .panel-heading.mh60
+        %h3.panel-title
+          .col-lg-3
+            = link_to new_patient_for_building_path(@building), class: 'btn btn-default btn-sm', title: 'Import patient for current building' do
+              %i.fa.fa-plus-square-o Додати Пацієнта
+          .col-lg-9
+            = "Пацієнти будинку по #{@building.full_address} в кількісті #{@building.patients.size}. На експорт: #{@building.patients.not_visible_true.size} "
+          .pull-right.mh60
+            = link_to import_patients_to_building_path(@building), class: 'btn btn-default btn-sm', title: 'Import patient for current building' do
+              %i.fa.fa-cloud-upload
+              %em Імпортувати
+            = link_to building_export_patients_path(@building, format: :xls), class: 'btn btn-default download-all-leads' do
+              %i.fim.fim-download
+              %em Експортувати
+      .panel-body
+        .all_patients
+          = render partial: 'patients', locals: {patients: @building.patients.order_by_appartment_number}
+  .clearfix

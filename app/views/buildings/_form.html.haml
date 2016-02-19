@@ -1,0 +1,19 @@
+.panel-body
+  = form_for @building, url: @buildings_path,  html: {class: 'form-horizontal', role: 'form'} do |f|
+    - if @building.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@building.errors.count, "error")} building save problem:"
+        %ul
+          - @building.errors.full_messages.each do |msg|
+            %li= msg
+    .form-group.field
+      = f.hidden_field :area_id, value: area.id, class: 'form-control'
+      = f.hidden_field :position_id, value: area.id, class: 'form-control'
+    .form-group.field
+      = f.label :full_address, 'Повна адреса будинку'
+      = f.text_field :full_address, class: 'form-control'
+    .form-group.field
+      = f.label :description, 'Нотатки'
+      = f.text_area :description, class: 'form-control'
+    .form-group
+      = f.submit action_name == 'edit' ? 'Обновити' : 'Створити', class: 'form-control btn btn-primary submit-button'

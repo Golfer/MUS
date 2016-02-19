@@ -1,0 +1,23 @@
+.panel-body
+  = form_for @patient, html: {class: 'form-horizontal', role: 'form'} do |f|
+    = f.hidden_field :building_id, value: @building.id
+    .form-group.field
+      = f.label :full_name, 'Повне ім’я пацієнта:'
+      = f.text_field :full_name, class: 'form-control'
+    .form-group.field
+      = f.label :gender, 'стать'
+      = f.text_field :gender, class: 'form-control'
+    .form-group.field
+      = f.label :date_birth, 'Дата рождения: '
+      = f.text_field :date_birth, class: 'form-control'
+    .form-group.field
+      = f.label :appartment_number, 'Номер квартири'
+      = f.text_field :appartment_number, class: 'form-control'
+    .form-group.field
+      = f.label :phone, 'Телефон'
+      = f.text_field :phone, class: 'form-control'
+    .form-group.field
+      = f.label :preferential_categories, 'Додаткові субсидії'
+      = f.text_field :preferential_categories, class: 'form-control'
+    .form-group
+      = f.submit action_name == 'edit' ? 'Обновити' : 'Створити', class: 'form-control btn btn-primary submit-button'

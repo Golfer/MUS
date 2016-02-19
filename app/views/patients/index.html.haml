@@ -1,0 +1,16 @@
+.row
+  .col-sm-12.form-style
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        -#= render partial: 'patients/import_form'
+  .clearfix
+    .col-sm-12.form-style
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title Список пацієнтів
+        .panel-body
+          = render partial: 'all_patients', locals: {patients: @patients}
+
+
+

@@ -1,0 +1,19 @@
+.row
+  .col-sm-12
+    - unless patients.blank?
+      %table.table.table-bordered
+        %tr
+          %th= 'П.І.Б.'
+          %th= 'Стать'
+          %th= 'Дата народження'
+          %th= 'Адресса'
+          %th= 'Телефон'
+          %th= 'Пільгові категорії'
+          - patients.each do |patient|
+            %tr
+              %td= patient.full_name
+              %td= render partial: 'patients/update_gender', locals: { patient: patient }
+              %td= patient.date_of_birth
+              %td= patient.address
+              %td= patient.phone
+              %td= patient.preferential_categories

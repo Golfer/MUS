@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <% @all_buildings.each do |building| %>
+        <Row>
+          <Cell><Data ss:Type="String">Будинок: <%= building.full_address %></Data></Cell>
+        </Row>
+        <Row>
+          <Cell><Data ss:Type="String">Прізвище, ім’я, по батькові</Data></Cell>
+          <Cell><Data ss:Type="String">Стать</Data></Cell>
+          <Cell><Data ss:Type="String">Повна дата народження</Data></Cell>
+          <Cell><Data ss:Type="String">Адреса</Data></Cell>
+          <Cell><Data ss:Type="String">Телефон</Data></Cell>
+          <Cell><Data ss:Type="String">Пільгові категорії</Data></Cell>
+        </Row>
+        <%= render partial: 'buildings/table_patients', locals: { building: building, patients: building.patients }%>
+        <Row></Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

@@ -1,0 +1,8 @@
+%span.btn.btn-info.fileinput-button
+  %input#fileupload{data: {url: import_patients_path(building_id: building_id)}, name: 'import_file', type: 'file', accept: '.csv'}
+  %i.fa.fa-cloud-upload
+    Upload Patients with file
+%script#template-upload{type: 'text/x-tmpl'}
+  .upload
+    .progress.progress-striped.active{role: 'progressbar', aria: { valuemin: '0', valuemax: '100', valuenow: '0'}}
+      %div{class: 'progress-bar progress-bar-info', style: 'width:0%;'}

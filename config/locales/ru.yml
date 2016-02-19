@@ -1,0 +1,5 @@
+patients:
+  index:
+    sex:
+      male: "чол."
+      famile: "женс."

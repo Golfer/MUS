@@ -1,0 +1,6 @@
+- not_visible = patient.not_visible ? 'false' : 'true'
+- name_class = not_visible == 'true' ? 'fa-eye-slash' : 'fa-eye'
+%span.not_visible{class: "visible-#{not_visible}", data: {id: patient.id}}
+  .fa-hover.col-md-1.col-sm-1
+    = link_to hide_patient_patient_path(patient.id, not_visible), data: {remote: true, method: :post} do
+      %i.fa{class: name_class}
