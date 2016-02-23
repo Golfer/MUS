@@ -19,7 +19,7 @@ gem 'haml'
 gem 'haml-rails'
 
 gem 'bootstrap-sass', '~> 3.1.1'
-
+gem 'bootswatch-rails'
 # rest client
 gem 'rest-client', '~>1.8.0'
 
