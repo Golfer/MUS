@@ -29,6 +29,8 @@ gem 'responders', '~> 2.0'
 gem 'jquery-fileupload-rails'
 gem 'axlsx'
 
+gem 'rails_admin'
+
 group :development do
   gem 'pry'
   gem 'pry-byebug'
