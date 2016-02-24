@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'buildings#index'
 
+  resource :areas
+
   get :export_all_area_patients, to: 'buildings#export_all_area_patients', as: 'export_all_area_patients'
   resources :buildings do
     get :export_patients
