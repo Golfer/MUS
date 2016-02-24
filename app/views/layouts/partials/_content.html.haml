@@ -1,15 +1,6 @@
 .container
-  - if flash.any?
-    .alert-block.page-header
-      - flash.each do |name, msg|
-        = content_tag :div, class: "alert #{name == :error ? 'alert-error' : 'alert-success' }" do
-          %a.close{href: '#', data: {dismiss: 'alert'} } ×
-          = msg
-
-  .bs-docs-section
-    .row.row-offcanvas.row-offcanvas-right
-      .col-lg-12
-        .page-header
-      .col-xs-12.col-sm-12
-        = yield
-        = yield :scripts
+  .row
+    .col-md-12.col-lg-12
+      = render partial: 'shared/flash_messages'
+      = yield
+      = yield :scripts

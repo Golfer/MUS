@@ -7,14 +7,9 @@
     %meta{content: '', name: 'description'}
     %meta{content: '', name: 'author'}
 
-    / Le HTML5 shim, for IE6-8 support of HTML5 elements
-    /[if lt IE 9]
     = stylesheet_link_tag    :application, media: :all
     = javascript_include_tag :application, media: :all
     = csrf_meta_tags
   %body
-    -#-if controller.controller_path.include?('admin')
-    -#  = render 'layouts/partials/admin/content'
-    -#-else
     = render 'layouts/partials/nav_bar'
     = render 'layouts/partials/content'
