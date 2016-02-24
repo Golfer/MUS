@@ -4,18 +4,58 @@ class PatientsController < ApplicationController
   class UnPermittedFileFormat < Exception; end
   respond_to :html, :json, :js, :xls
 
-  SHOW_ERROR_COUNT = 8
+  SHOW_ERROR_COUNT = 50
   ALLOW_FORMAT = %w(.csv).freeze
 
-  before_action :patient, only: [:update_gender, :hide_patient, :show, :edit, :update, :destroy]
+  before_action :patient, only: [:update_gender, :hide_patient, :show, :edit,
+                                 :update, :destroy]
   before_action :building, only: [:export]
   before_action :area, only: [:import_file!]
 
   def index
+    respond_to :html
+  end
+
+  def show
+    respond_to :html
+  end
+
+  def new
+    @patient = Patient.new
+    respond_to :html
+  end
+
+  def create
+    @building ||= Building.find(params[:building_id])
+    @patient = Patient.new(patient_params)
     respond_with({}) do |format|
-      format.html
-      format.json { render json: @patients }
+      if @patient.save
+        format.html do
+          flash[:notice] = 'Patient was created!'
+          redirect_to patients_building_path(@building)
+        end
+      else
+        format.html { render :new_patient_for_building }
+      end
     end
+  end
+
+  def edit
+  end
+
+  def update
+    respond_with({}) do |format|
+      if @patient.update(patient_params)
+        format.html { redirect_to patients_building_path(@patient.building), notice: 'Patient was successfully updated!' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+  def destroy
+    @patient.destroy
+    respond_to :js
   end
 
   def import_patients
@@ -77,13 +117,6 @@ class PatientsController < ApplicationController
                    date_birth: row[1]=='ПІБ' ? '10.10.2012' : row[2].gsub(/\s+/, ''), appartment_number: row[0])
   end
 
-  def show
-  end
-
-  def new
-    @patient = Patient.new
-  end
-
   def new_patient_for_building
     @building ||= Building.find(params[:id])
     @patient = Patient.new
@@ -95,37 +128,6 @@ class PatientsController < ApplicationController
         # format.json { render json: patients_building_path(@building).errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def create
-    @building ||= Building.find(params[:building_id])
-    @patient = Patient.new(patient_params)
-    respond_with({}) do |format|
-      if @patient.save
-        format.html { redirect_to patients_building_path(@building), notice: 'Patient was created!' }
-      else
-        format.html { render :new_patient_for_building }
-        # format.json { render json: @patient.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    respond_with({}) do |format|
-      if @patient.update(patient_params)
-        format.html { redirect_to patients_building_path(@patient.building), notice: 'Patient was successfully updated!' }
-      else
-        format.html { render :edit }
-      end
-    end
-  end
-
-  def destroy
-    @patient.destroy
-    respond_to :js
   end
 
   def format_errors(errors)
