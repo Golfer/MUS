@@ -48,7 +48,10 @@ class BuildingsController < ApplicationController
   def update
     respond_with({}) do |format|
       if @building.update(building_params)
-        format.html { redirect_to root_path, notice: 'Building was successfully updated!' }
+        format.html do
+          flash[:notice] = 'Building was successfully updated!'
+          redirect_to root_path
+        end
       else
         format.html { render :edit }
       end
@@ -58,7 +61,10 @@ class BuildingsController < ApplicationController
   def destroy
     @building.destroy
     respond_with({}) do |format|
-      format.html { redirect_to root_path, notice: 'Building was successfully destroyed!' }
+      format.html do
+        flash[:notice] = 'Building was successfully destroyed!'
+        redirect_to root_path
+      end
       format.json { head :no_content }
     end
   end
