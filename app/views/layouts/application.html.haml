@@ -1,15 +1,9 @@
 !!!
 %html
-  %head
-    %meta{charset: 'utf-8'}
-    %title= content_for?(:title) ? yield(:title) : 'MPS'
-    %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}
-    %meta{content: '', name: 'description'}
-    %meta{content: '', name: 'author'}
-
-    = stylesheet_link_tag    :application, media: :all
-    = javascript_include_tag :application, media: :all
-    = csrf_meta_tags
+  = render 'layouts/partials/header'
+  = stylesheet_link_tag    :application, media: :all
+  = javascript_include_tag :application, media: :all
+  = csrf_meta_tags
   %body
     = render 'layouts/partials/nav_bar'
     = render 'layouts/partials/content'

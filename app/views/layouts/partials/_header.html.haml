@@ -1,0 +1,13 @@
+%head
+  %title M.P.S.#{' - ' if yield(:title).present?}#{yield(:title)}
+  %meta{charset: 'utf-8'}/
+  %meta{content: 'width=device-width, initial-scale=0.8', name: 'viewport'}
+  %meta{content: 'M.P.S.', name: 'author'}
+  %meta{content: '', name: 'keyword'}
+  %meta{property: 'og:title', content: 'Let all be healthy'}
+  %meta{property: 'og:site_name', content: 'M.P.S.'}
+  %meta{property: 'og:url', content: request.original_url }
+  %meta{property: 'og:image', content: image_url('facebook-banner.jpg')}
+  %link{rel: 'icon', type: 'image/vnd.microsoft.icon', href: '/favicon.ico'}
+  %link{rel: 'apple-touch-icon', href: asset_url('apple-icon-precomposed.png')}
+  %link{rel: 'apple-touch-icon-precomposed', href: asset_url('apple-icon-precomposed.png')}
