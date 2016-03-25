@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_filter :set_user, only: %i(show edit update)
+  before_filter :set_user, only: %i(show edit update)
   # before_filter :validate_authorization_for_user, only: %i(edit update)
 
   def index

@@ -1,0 +1,30 @@
+.col-md-3
+  .profile-sidebar
+    .profile-userpic
+      -#%img.img-responsive{alt: '', src: ''}
+    .profile-usertitle
+      .profile-usertitle-name
+        = user.full_name
+      -#.profile-usertitle-job
+        Developer
+    -#.profile-userbuttons
+      %button.btn.btn-success.btn-sm{type: 'button'} Follow
+      %button.btn.btn-danger.btn-sm{type: 'button'} Message
+    .profile-usermenu
+      %ul.nav
+        %li
+          = link_to current_user do
+            %i.glyphicon.glyphicon-home
+            = current_user.email
+        %li
+          = link_to edit_user_path(user) do
+            %i.glyphicon.glyphicon-user
+            Account Settings
+        -#%li
+          %a{href: '#'}
+            %i.glyphicon.glyphicon-ok
+            Tasks
+        -#%li
+          %a{href: '#'}
+            %i.glyphicon.glyphicon-flag
+            Help
