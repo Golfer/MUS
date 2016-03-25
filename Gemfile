@@ -52,6 +52,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'awesome_print'
   gem 'quiet_assets'
+  gem 'html2haml', require: false
 end
 
 group :development, :test do
