@@ -1,17 +1,15 @@
-class OmniauthCallbacksController < ApplicationController
+class OmniauthCallbacksController <  Devise::OmniauthCallbacksController
   skip_before_filter :authenticate_user!
-  def all
-    user = User.from_omniauth(env['omniauth.auth'], current_user)
-    if user.persisted?
-      flash[:notice] = 'Go to edit profile'
-      sign_in_and_redirect(user)
+  def oauth2
+    user = Authorization.from_omniauth(request.env['omniauth.auth'], current_user)
+    if user
+      redirect_to root_path
     else
-      session['devise.user_attributes'] = user.attributes
+      session['devise.user_attributes'] = request.env['omniauth.auth']
       redirect_to new_user_registration_url
     end
   end
 
-  alias_method :facebook, :all
-  alias_method :twitter, :all
-  alias_method :google_oauth2, :all
+  alias_method :facebook, :oauth2
+  alias_method :google_oauth2, :oauth2
 end

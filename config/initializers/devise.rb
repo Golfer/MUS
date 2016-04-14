@@ -1,3 +1,5 @@
+require 'omniauth-google-oauth2'
+require 'omniauth-facebook'
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -6,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '70197059484654e5c345d225c481ab6c00a1aeafb9b405af16bbcc4d29ac8df7fe1e9d0aad4f2f0bf56eea35567cee6f7b93902a4ee4d01e21acc5c3ca30c472'
+  config.secret_key = '70197059484654e5c345d225c481ab6c00a1aeafb9b405af16bbcc4d29ac8df7fe1e9d0aad4f2f0bf56eea35567cee6f7b93902a4ee4d01e21acc5c3ca30c472'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -235,12 +237,6 @@ Devise.setup do |config|
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
   require 'devise/orm/active_record'
-
-  config.sign_out_via = :get
-  config.omniauth :facebook, ENV["FACEBOOK_KEY"], ENV["FACEBOOK_SECRET"], { :scope => 'email', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
-  config.omniauth :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_SECRET"], { :scope => 'r_fullprofile, r_emailaddress', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
-  config.omniauth :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'], {}
-
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.

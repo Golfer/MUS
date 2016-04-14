@@ -6,12 +6,10 @@
         - if devise_mapping.registerable? && controller_name != 'registrations'
           = link_to 'Sign up', new_registration_path(resource_name)
       .row
-        .col-xs-4.col-sm-4.col-md-4
-          %a.btn.btn-lg.btn-danger.btn-block{href: "#"} Google +
-        .col-xs-4.col-sm-4.col-md-4
-          %a.btn.btn-lg.btn-info.btn-block{href: "#"} Facebook
-        .col-xs-4.col-sm-4.col-md-4
-          %a.btn.btn-lg.btn-primary.btn-block{href: "#"} Twitter
+        .col-xs-6.col-sm-6.col-md-6
+          = link_to 'Google +', user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-lg btn-danger btn-block'
+        .col-xs-6.col-sm-6.col-md-6
+          = link_to 'Facebook', user_omniauth_authorize_path(:facebook), class: 'btn btn-lg btn-info btn-block'
       .login-or
         %hr.hr-or
           %span.span-or or
