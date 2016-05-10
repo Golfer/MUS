@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root to: 'buildings#index'
+  root to: 'dashboard#index'
 
-  resource :areas
+  resources :areas do
+    collection do
+      post :add_building
+    end
+  end
 
   get :export_all_area_patients, to: 'buildings#export_all_area_patients', as: 'export_all_area_patients'
   resources :buildings do

@@ -1,0 +1,17 @@
+.panel-body
+  = form_for @area, url: @area_path,  html: {class: 'form-horizontal', role: 'form'} do |f|
+    - if @area.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@area.errors.count, "error")} area save problem:"
+        %ul
+          - @area.errors.full_messages.each do |msg|
+            %li= msg
+    .form-group.field
+    .form-group.field
+      = f.label :name, 'Name Area'
+      = f.text_field :name, class: 'form-control'
+    .form-group.field
+      = f.label :description, 'Description area'
+      = f.text_area :description, class: 'form-control'
+    .form-group
+      = f.submit action_name == 'edit' ? 'Update Area' : 'Create area', class: 'form-control btn btn-primary submit-button'

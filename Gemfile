@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 
+gem 'puma'
+
 ### Database gems ###
 gem 'pg'
 gem 'foreigner'
@@ -29,14 +31,13 @@ gem 'responders', '~> 2.0'
 gem 'jquery-fileupload-rails'
 gem 'axlsx'
 
-gem 'rails_admin'
-
 group :development do
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'meta_request'
+  gem 'annotate', require: false
   gem 'better_errors', '~> 2.1.0'
   gem 'binding_of_caller'
   gem 'rubocop', require: false
