@@ -17,6 +17,15 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.0'
 # gem 'sdoc', '~> 0.4.0', group: :doc
 
+
+#***# Authentication #***#
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-oauth2'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+# gem 'cancancan', '~> 1.13.1'
+
 gem 'haml'
 gem 'haml-rails'
 
@@ -43,6 +52,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'awesome_print'
   gem 'quiet_assets'
+  gem 'html2haml', require: false
 end
 
 group :development, :test do

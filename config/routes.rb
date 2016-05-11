@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  root to: 'dashboard#index'
-
+  root to: 'dashboards#index'
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }, skip: :sessions
+     as :user do
+        get 'signin' => 'devise/sessions#new', as: :new_user_session
+        post 'signin' => 'devise/sessions#create', as: :user_session
+        match 'signout' => 'devise/sessions#destroy', as: :destroy_user_session,
+              via: Devise.mappings[:user].sign_out_via
+  end
+  resources :users
+  resources :dashboards
   resources :areas do
     collection do
       post :add_building

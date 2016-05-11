@@ -1,13 +1,13 @@
 %nav.navbar.navbar-inverse.navbar-fixed-top{role: 'navigation'}
   .container-fluid
     .navbar-header
-      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-2", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-2", "data-toggle" => "collapse", type: "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
       = link_to 'M.U.S.', root_path, class: 'navbar-brand'
-    #bs-example-navbar-collapse-2.collapse.navbar-collapse
+    .collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li.active
           = link_to buildings_path do
@@ -17,11 +17,13 @@
           = link_to patients_path do
             Patients
       %ul.nav.navbar-nav.navbar-right
-        %li
-          %a{:href => "#"} Sing up
-        %li
-          %a{:href => "#"} Sing in
-      %form.navbar-form.navbar-right{:role => "search"}
+        - if user_signed_in?
+          %li= link_to current_user.email, 'javascript:void();'
+          %li= link_to 'Logout', destroy_user_session_path
+        - else
+          %li= link_to 'Sign UP', new_user_registration_path
+          %li= link_to 'Sign IN', new_user_session_path
+      -#%form.navbar-form.navbar-right{role: 'search'}
         .form-group
-          %input.form-control{:placeholder => "Search", :type => "text"}
-        %button.btn.btn-default{:type => "submit"} Search
+          %input.form-control{placeholder: 'Search', type: 'text'}
+        %button.btn.btn-default{type: 'submit'} Search
