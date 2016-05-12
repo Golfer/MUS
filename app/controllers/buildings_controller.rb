@@ -1,4 +1,5 @@
 class BuildingsController < ApplicationController
+  before_action :authenticate_user!
   respond_to :html, :json, :js, :xls
   before_action :area, only: [:index, :new, :create, :edit, :update]
   before_action :building, only: [:patients, :show, :edit, :update, :destroy]

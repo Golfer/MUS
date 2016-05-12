@@ -19,7 +19,7 @@ gem 'jbuilder', '~> 2.0'
 
 
 #***# Authentication #***#
-gem 'devise'
+gem 'devise', '~> 4.1.0'
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
@@ -49,14 +49,14 @@ group :development do
   gem 'annotate', require: false
   gem 'better_errors', '~> 2.1.0'
   gem 'binding_of_caller'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.40.0', require: false
   gem 'awesome_print'
   gem 'quiet_assets'
   gem 'html2haml', require: false
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.1.0'
+  gem 'rspec-rails', '~> 3.4.2'
   gem 'factory_girl', '~> 4.5.0'
   gem 'simplecov', require: false
   gem 'byebug'
