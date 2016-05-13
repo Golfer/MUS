@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root to: 'dashboards#index'
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
-                            sessions: 'users/sessions' }
+                            sessions: 'users/sessions',
+                            registrations: 'users/registrations',
+                            passwords: 'users/passwords'}
 
   resources :dashboards
   resources :areas do
