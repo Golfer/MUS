@@ -9,14 +9,9 @@ class User < ActiveRecord::Base
          :omniauthable,
          omniauth_providers: %i(facebook)
 
-  # has_many :authorizations
+  has_many :authorizations
 
   def self.from_omniauth(auth)
-    p '------------------------'
-    p auth
-    p auth.info
-    p auth.email
-    p '------------------------'
     first_or_create do |user|
       # user.provider = auth.provider
       # user.uid = auth.uid
@@ -25,7 +20,4 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
     end
   end
-
-  # class << self
-  # end
 end
