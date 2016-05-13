@@ -7,10 +7,25 @@ class User < ActiveRecord::Base
          :timeoutable,
          :validatable,
          :omniauthable,
-         omniauth_providers: %i(google_oauth2 facebook)
+         omniauth_providers: %i(facebook)
 
-  has_many :authorizations
+  # has_many :authorizations
 
-  class << self
+  def self.from_omniauth(auth)
+    p '------------------------'
+    p auth
+    p auth.info
+    p auth.email
+    p '------------------------'
+    first_or_create do |user|
+      # user.provider = auth.provider
+      # user.uid = auth.uid
+      user.full_name = auth.info.name
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
   end
+
+  # class << self
+  # end
 end

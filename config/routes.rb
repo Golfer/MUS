@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
+  namespace :users do
+  get 'sessions/new'
+  end
+
+  namespace :users do
+  get 'sessions/create'
+  end
+
   root to: 'dashboards#index'
   devise_for :users,
-             path_names: { sign_in: 'login', sign_out: 'logout' },
-             controllers: {
-                            omniauth_callbacks: 'users/omniauth_callbacks',
-                            sessions: 'users/sessions'
-                          }
-  resources :users, only: [:index, :destroy]
+             controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+                            sessions: 'users/sessions' }
 
   resources :dashboards
   resources :areas do

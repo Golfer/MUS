@@ -21,9 +21,8 @@ gem 'jbuilder', '~> 2.0'
 #***# Authentication #***#
 gem 'devise', '~> 4.1.0'
 gem 'omniauth'
-gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
+# gem 'omniauth-google-oauth2'
 # gem 'cancancan', '~> 1.13.1'
 
 gem 'haml'
