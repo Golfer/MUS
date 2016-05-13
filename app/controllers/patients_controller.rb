@@ -4,6 +4,8 @@ class PatientsController < ApplicationController
   class UnPermittedFileFormat < Exception; end
   respond_to :html, :json, :js, :xls
 
+  before_action :authenticate_user!
+
   SHOW_ERROR_COUNT = 50
   ALLOW_FORMAT = %w(.csv).freeze
 

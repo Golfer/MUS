@@ -24,11 +24,11 @@ ActiveRecord::Schema.define(version: 20160325121351) do
   end
 
   create_table "authorizations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "provider"
+    t.integer  "user_id",    null: false
+    t.string   "provider",   null: false
     t.string   "username"
-    t.string   "uid"
-    t.string   "token"
+    t.string   "uid",        null: false
+    t.string   "token",      null: false
     t.string   "secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
