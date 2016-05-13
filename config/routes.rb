@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  namespace :users do
-  get 'sessions/new'
-  end
-
-  namespace :users do
-  get 'sessions/create'
-  end
-
   root to: 'dashboards#index'
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
