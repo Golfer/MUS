@@ -1,5 +1,6 @@
-.container
-  .col-md-12.col-lg-12
-    = render partial: 'shared/flash_messages'
-    = yield
-    = yield :scripts
+#wrap-container
+  .container.clear-top#main-container
+    .col-md-12.col-lg-12
+      = render partial: 'shared/flash_messages'
+      = yield
+      = yield :scripts

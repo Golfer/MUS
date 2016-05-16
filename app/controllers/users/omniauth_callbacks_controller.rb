@@ -1,12 +1,15 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def facebook
-    p '-------Facebook-----'
-    p params
-    p request.env["omniauth.auth"]
-    p '-------Facebook-----'
-    @user = User.from_omniauth(request.env["omniauth.auth"])
+  def oauth2
+    @user = Authorization.from_omniauth(oauth_params)
     sign_in_and_redirect @user
   end
 
+  alias_method :facebook, :oauth2
+
+  private
+
+  def oauth_params
+    request.env['omniauth.auth']
+  end
 
 end

@@ -1,5 +1,5 @@
 %header
-  %nav.navbar.navbar-inverse.navbar-fixed-top{role: 'navigation'}
+  %nav.navbar.navbar-fixed-top{role: 'navigation'}
     .container-fluid
       .navbar-header
         %button.navbar-toggle.collapsed{'data-target' => '#bs-example-navbar-collapse-2', 'data-toggle' => 'collapse', type: 'button'}
@@ -7,24 +7,38 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        = link_to 'M.U.S.', root_path, class: 'navbar-brand'
+        = link_to root_path, class: 'logo' do
+          = image_tag ('logo.png'), alt: 'MUS'
       .collapse.navbar-collapse
         %ul.nav.navbar-nav
-          %li{class: controller_name == 'buildings' ? 'active' : ''}
-            = link_to buildings_path do
-              Building
-              %span.sr-only (current)
-          %li{class: controller_name == 'patients' ? 'active' : ''}
-            = link_to patients_path do
-              Patients
-          %li{class: controller_name == 'areas' ? 'active' : ''}
-            = link_to areas_path do
-              All Areas
+          - if user_signed_in?
+            %li= link_to 'Doctors', 'javascript:void();'
+            %li= link_to 'Services', 'javascript:void();'
+            %li= link_to 'Gallery', 'javascript:void();'
+            %li= link_to 'Blog', 'javascript:void();'
+            %li= link_to 'About Us', 'javascript:void();'
+            %li= link_to 'Contact Us', 'javascript:void();'
+            %li{class: controller_name == 'buildings' ? 'active' : ''}
+              = link_to buildings_path do
+                Building
+            %li{class: controller_name == 'patients' ? 'active' : ''}
+              = link_to patients_path do
+                Patients
+            %li{class: controller_name == 'areas' ? 'active' : ''}
+              = link_to areas_path do
+                All Areas
+          - else
+            %li= link_to 'Doctors', 'javascript:void();'
+            %li= link_to 'Services', 'javascript:void();'
+            %li= link_to 'Gallery', 'javascript:void();'
+            %li= link_to 'Blog', 'javascript:void();'
+            %li= link_to 'About Us', 'javascript:void();'
+            %li= link_to 'Contact Us', 'javascript:void();'
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li= link_to current_user.email, 'javascript:void();'
-            %li= link_to 'LogOut', destroy_user_session_path, method: :delete
+            %li= link_to 'Log Out', destroy_user_session_path, method: :delete
           - else
-            %li= link_to 'SignUp', new_user_registration_path
-            %li= link_to 'SignIn', new_user_session_path
-        = render partial: 'layouts/partials/search_weadgets'
+            %li= link_to 'Sign In', new_user_session_path
+            %li= link_to 'Join Us', new_user_registration_path
+        -#= render partial: 'layouts/partials/search_weadgets'
